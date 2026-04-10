@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-dim": "#008b8e",
+                    "tertiary-fixed": "#1e293b",
+                    "secondary-fixed": "#1e293b",
+                    "inverse-surface": "#f8f9fa",
+                    "surface-container-lowest": "#020617",
+                    "surface-bright": "#1e293b",
+                    "surface-container-high": "#1e293b",
+                    "on-secondary-fixed": "#94a3b8",
+                    "error-container": "#450a0a",
+                    "on-tertiary": "#000000",
+                    "primary-fixed": "#ccfbf1",
+                    "outline": "#475569",
+                    "surface-variant": "#0f172a",
+                    "surface-container": "#0f172a",
+                    "inverse-on-surface": "#020617",
+                    "on-surface-variant": "#94a3b8",
+                    "tertiary-dim": "#334155",
+                    "on-secondary-fixed-variant": "#64748b",
+                    "on-error-container": "#f87171",
+                    "surface": "#020617",
+                    "inverse-primary": "#00CED1",
+                    "secondary": "#94a3b8",
+                    "on-tertiary-fixed-variant": "#475569",
+                    "on-secondary": "#020617",
+                    "primary": "#00CED1",
+                    "on-error": "#ffffff",
+                    "surface-dim": "#020617",
+                    "secondary-fixed-dim": "#334155",
+                    "secondary-dim": "#64748b",
+                    "secondary-container": "#1e293b",
+                    "surface-tint": "#00CED1",
+                    "tertiary-container": "#1e293b",
+                    "error": "#ef4444",
+                    "tertiary": "#cbd5e1",
+                    "surface-container-highest": "#334155",
+                    "error-dim": "#7f1d1d",
+                    "surface-container-low": "#0f172a",
+                    "on-primary-container": "#ccfbf1",
+                    "outline-variant": "#1e293b",
+                    "background": "#020617",
+                    "primary-container": "#134e4a",
+                    "on-background": "#f8f9fa",
+                    "primary-fixed-dim": "#5eead4",
+                    "tertiary-fixed-dim": "#94a3b8",
+                    "on-tertiary-fixed": "#f1f5f9",
+                    "on-primary": "#020617",
+                    "on-primary-fixed": "#020617",
+                    "on-surface": "#f8f9fa",
+                    "on-primary-fixed-variant": "#0d9488",
+                    "on-tertiary-container": "#cbd5e1",
+                    "on-secondary-container": "#e2e8f0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-offset {
+            padding-left: 32px;
+            padding-right: 24px;
+        }
+        .glass-shell {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-background antialiased">
+<!-- TopAppBar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant/30">
+<img alt="User" class="w-full h-full object-cover grayscale contrast-125" data-alt="Close-up portrait of a professional woman with a calm expression against a soft-focus minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzl8FXwqpNGBUjLVMeXn0pBBhEvMiWLYNn11W4gPJ0wojjxQ5mdYUIT4Uct0rfy6tGmlKkOzdm29O2UI9bIvGcAOF7YwCmhj5MgXO96gLHVx-ksmYM8H_rHOz_xfd5VK1Eb35jM4dqK7e-2xXKMSjkoxUcXpZm4WWjW6nKcVh5_zTBX669iV6Pz_BwT8RMfrTCSC8dUzjgW5avp695irTBii8HjA-b66a7eARvC2_gI7AKxjIM0M3uzkcvrhwCeS-tG-bRDQYTy4s"/>
+</div>
+<span class="text-lg font-bold tracking-[0.2em] uppercase text-primary font-headline">KINETIC</span>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">
+            settings
+        </button>
+</nav>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-32 min-h-screen">
+<header class="editorial-offset mb-12">
+<span class="text-[10px] tracking-[0.2em] uppercase font-bold text-primary mb-2 block">Exploration</span>
+<h1 class="text-4xl font-extrabold tracking-tight text-on-background mb-4">Training Categories</h1>
+<p class="text-on-surface-variant max-w-xs font-light leading-relaxed">Select your discipline. Treat your body like a canvas in motion.</p>
+</header>
+<!-- Bento-style Category Grid -->
+<section class="editorial-offset grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Category Tile: Muscle Building -->
+<div class="group relative aspect-[4/5] bg-surface-container-low overflow-hidden rounded-xl border border-outline-variant/20 transition-all duration-500 cubic-bezier(0.2, 0, 0, 1) hover:border-primary/50 hover:bg-surface-container-high">
+<div class="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-500 mix-blend-lighten">
+<img alt="Muscle Building" class="w-full h-full object-cover" data-alt="Monochromatic close-up of a muscular arm holding a chrome dumbbell with soft shadows and high contrast" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYlthsro24D1DnfPW_LbauCi_VBpTSoP0XtOSLtyFrSRVdomROsF4tShhduFSkmi2as3tiO7cUVFDv4E_Fk1-7O5yPLtAnuDoIE0svD3ZqPrbqv0cQ_c0bNXcoi-xBXnH0JgcvASmXRPgNTYuQHcqDFnSPQrzt-IMN0ZdctsLIqWb_rW1YQgjVGq9W4S50hgpJHILjBC5IEiKXZPOGWrbuk5Tb3UPSsjWge2X0y20kQ080lVJrYx9RuBiPDkS7Raj35ZRpewlMUEY"/>
+</div>
+<div class="absolute inset-0 p-8 flex flex-col justify-between z-10">
+<div class="w-12 h-12 flex items-center justify-center bg-primary-container rounded-full group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-primary text-2xl">fitness_center</span>
+</div>
+<div>
+<h3 class="text-2xl font-bold tracking-tight text-on-background leading-tight">Muscle Building</h3>
+<p class="text-[10px] tracking-[0.1em] uppercase font-semibold text-primary mt-2">12 Programs Available</p>
+</div>
+</div>
+</div>
+<!-- Category Tile: Pilates -->
+<div class="group relative aspect-[4/5] bg-surface-container-low overflow-hidden rounded-xl border border-outline-variant/20 transition-all duration-500 cubic-bezier(0.2, 0, 0, 1) hover:border-primary/50 hover:bg-surface-container-high">
+<div class="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-500 mix-blend-lighten">
+<img alt="Pilates" class="w-full h-full object-cover" data-alt="Minimalist pilates studio with wooden floors, soft sunlight through windows, and a neat row of mats" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPlV0BwQtbFNx0uk-0pLCjd6T3oTnPrK5W-vXXwTGfsIMmF5a4JPsrOc-1bHcsROzcfuDvVoYOoejcAjo-AJRm3Hw71CV_QUjAyQD14g1snlFFALP9Cfwi_ZphELhbcH9hLiMlRt3AUxMjFystklfRsZUvCx6CNQtd1xdSJmzcHcGCqmG-KEYxHJ3wxMAeX-S5h6vcXa1mhp6wWd-IiH1PjVzIC2DvCx4M7HpISUKoN4K_AcFx5s6fum6brts-qUlwrR3iTApzbus"/>
+</div>
+<div class="absolute inset-0 p-8 flex flex-col justify-between z-10">
+<div class="w-12 h-12 flex items-center justify-center bg-primary-container rounded-full group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-primary text-2xl">architecture</span>
+</div>
+<div>
+<h3 class="text-2xl font-bold tracking-tight text-on-background leading-tight">Pilates</h3>
+<p class="text-[10px] tracking-[0.1em] uppercase font-semibold text-primary mt-2">8 Core Series</p>
+</div>
+</div>
+</div>
+<!-- Category Tile: Cardio -->
+<div class="group relative aspect-[4/5] bg-surface-container-low overflow-hidden rounded-xl border border-outline-variant/20 transition-all duration-500 cubic-bezier(0.2, 0, 0, 1) hover:border-primary/50 hover:bg-surface-container-high">
+<div class="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-500 mix-blend-lighten">
+<img alt="Cardio" class="w-full h-full object-cover" data-alt="Abstract blur of a runner in a urban setting at dawn with cool blue tones and street lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTq5ozvrR9kI1z1_UILoCmHl73yyO3IXojQJwFdieu_mnMtjvozVT9016UzpDgRytAm9G1NGxnAkJMp5439rmd3PeXGBjCk94rcwSNeSex5hw278Jw5z7bwLp1SGdE_Hwd1Pt_ZYz6-XsN3uk1jF5JjTiVGyOvY8iNnVSMQBEXDY3GEItXbfoLacDsbVznn7yPZMkXs0gAPG2AOPzlhDSmw8-hKPCUZgOlufDWkElphd2txl_PcBYGoPyh3G8A8g27ZgIO-9-zOqY"/>
+</div>
+<div class="absolute inset-0 p-8 flex flex-col justify-between z-10">
+<div class="w-12 h-12 flex items-center justify-center bg-primary-container rounded-full group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-primary text-2xl">air</span>
+</div>
+<div>
+<h3 class="text-2xl font-bold tracking-tight text-on-background leading-tight">Cardio</h3>
+<p class="text-[10px] tracking-[0.1em] uppercase font-semibold text-primary mt-2">15 Endurance Paths</p>
+</div>
+</div>
+</div>
+<!-- Category Tile: Yoga -->
+<div class="group relative aspect-[4/5] bg-surface-container-low overflow-hidden rounded-xl border border-outline-variant/20 transition-all duration-500 cubic-bezier(0.2, 0, 0, 1) hover:border-primary/50 hover:bg-surface-container-high">
+<div class="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-500 mix-blend-lighten">
+<img alt="Yoga" class="w-full h-full object-cover" data-alt="A singular incense stick burning in a stone holder on a white surface with soft morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA27N33UjFtMPspwJbcC5ezhtyIPOsZx18Ag9BKqoOyh06J8_68GsJzYyKbEN7IPvcNUYvgYpggWmrqvZHNaCeOdGptKuBEHCfHRqGqo1d_56-NtLq0l8n2lt6HgKTkR94OOBiEkqaDqz-wbk1DBPbWbTCjfMx27YBnm0Rl8QB0mQLydDHP-_J37ASQP5H5GmnuldE3XDmGnAS7wW3ZkCj5JDWVnXoh9K5Z5RDt2zMW4_lh31IrVKDOtR_sOk9R1HqDCF9gYEiy_h4"/>
+</div>
+<div class="absolute inset-0 p-8 flex flex-col justify-between z-10">
+<div class="w-12 h-12 flex items-center justify-center bg-primary-container rounded-full group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-primary text-2xl">self_improvement</span>
+</div>
+<div>
+<h3 class="text-2xl font-bold tracking-tight text-on-background leading-tight">Yoga</h3>
+<p class="text-[10px] tracking-[0.1em] uppercase font-semibold text-primary mt-2">20 Mindful Flows</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Secondary List for Focused Training -->
+<section class="editorial-offset mt-20">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h2 class="text-xl font-bold tracking-tight text-on-background">Specialized Tracks</h2>
+<p class="text-sm text-on-surface-variant font-light">Niche disciplines for advanced performance.</p>
+</div>
+</div>
+<div class="space-y-4">
+<!-- Track Item -->
+<div class="flex items-center justify-between p-6 bg-surface-container-low border border-outline-variant/10 rounded-xl group hover:border-primary/30 hover:bg-surface-container-high transition-all duration-300">
+<div class="flex items-center gap-6">
+<div class="w-10 h-10 flex items-center justify-center bg-primary-container/20 rounded-full text-primary border border-primary/20">
+<span class="material-symbols-outlined">pool</span>
+</div>
+<div>
+<span class="block text-sm font-bold tracking-tight text-on-background">Aquatic Resistance</span>
+<span class="text-[10px] tracking-widest uppercase font-medium text-on-surface-variant">Low Impact • 45m</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+<!-- Track Item -->
+<div class="flex items-center justify-between p-6 bg-surface-container-low border border-outline-variant/10 rounded-xl group hover:border-primary/30 hover:bg-surface-container-high transition-all duration-300">
+<div class="flex items-center gap-6">
+<div class="w-10 h-10 flex items-center justify-center bg-primary-container/20 rounded-full text-primary border border-primary/20">
+<span class="material-symbols-outlined">directions_run</span>
+</div>
+<div>
+<span class="block text-sm font-bold tracking-tight text-on-background">HIIT Circuits</span>
+<span class="text-[10px] tracking-widest uppercase font-medium text-on-surface-variant">High Intensity • 30m</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+<!-- Track Item -->
+<div class="flex items-center justify-between p-6 bg-surface-container-low border border-outline-variant/10 rounded-xl group hover:border-primary/30 hover:bg-surface-container-high transition-all duration-300">
+<div class="flex items-center gap-6">
+<div class="w-10 h-10 flex items-center justify-center bg-primary-container/20 rounded-full text-primary border border-primary/20">
+<span class="material-symbols-outlined">sports_martial_arts</span>
+</div>
+<div>
+<span class="block text-sm font-bold tracking-tight text-on-background">Mobility Flow</span>
+<span class="text-[10px] tracking-widest uppercase font-medium text-on-surface-variant">Recovery • 20m</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<footer class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-surface/80 backdrop-blur-xl border-t border-outline-variant/20">
+<div class="flex flex-col items-center justify-center text-on-surface-variant transition-transform hover:text-primary">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-manrope text-[10px] tracking-[0.05em] uppercase font-bold mt-1">DASHBOARD</span>
+</div>
+<!-- Active State: CATEGORIES -->
+<div class="flex flex-col items-center justify-center text-primary scale-110 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">category</span>
+<span class="font-manrope text-[10px] tracking-[0.05em] uppercase font-bold mt-1">CATEGORIES</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant transition-transform hover:text-primary">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-manrope text-[10px] tracking-[0.05em] uppercase font-bold mt-1">LOGGER</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant transition-transform hover:text-primary">
+<span class="material-symbols-outlined">history</span>
+<span class="font-manrope text-[10px] tracking-[0.05em] uppercase font-bold mt-1">HISTORY</span>
+</div>
+</footer>
+</body></html>

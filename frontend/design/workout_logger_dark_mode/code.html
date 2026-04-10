@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#00CED1",
+                    "primary-dim": "#008B8B",
+                    "on-primary": "#000000",
+                    "surface": "#0a0c0d",
+                    "surface-container": "#15191b",
+                    "surface-container-low": "#1c2124",
+                    "surface-container-lowest": "#050607",
+                    "surface-container-high": "#222a2d",
+                    "on-surface": "#e1e3e4",
+                    "on-surface-variant": "#9ba3a7",
+                    "outline": "#737c7f",
+                    "outline-variant": "#444a4d",
+                    "background": "#0a0c0d",
+                    "on-background": "#e1e3e4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "1.5rem"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Manrope', sans-serif; }
+        .shadow-cyan {
+            box-shadow: 0 0 20px rgba(0, 206, 209, 0.2);
+        }
+    </style>
+<style>
+        body {
+          min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-background/80 backdrop-blur-xl border-b border-outline-variant/10">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden border border-outline-variant/20">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="portrait of a focused athletic woman in soft studio lighting with a clean minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfNNgE29wBZ2pvrKuQkF3K7tlL7n-K3KhA6VC1Dh-g13-NusM2O1Nz8nRHMDqnxXZB0gzLKjY0FPVgVU-iWLKvLUb9k2i7vzJzqqpBMTHbYyJJ5Nj0yjEynuTZZ81dqgFaP0SPvC1xFjWkEyUBuErL38BfMyN_SOSJFAByPJ9-B1lsVWJNQU_DXzOY6YHy74itWeGiId_dyUmO3rfnjyHtCqN67Q81Bcxcl2PySdwsSzzlbW4W91nL1JWC3nvv-UuUJF5QVG1bDh0"/>
+</div>
+<h1 class="text-lg font-bold tracking-[0.2em] uppercase text-primary font-headline">KINETIC</h1>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-2xl mx-auto">
+<!-- Editorial Header -->
+<div class="mb-12">
+<p class="text-[10px] tracking-[0.15em] uppercase font-bold text-primary mb-2">SESSION LOG</p>
+<h2 class="text-4xl font-light tracking-tight text-on-surface">Morning Strength</h2>
+<p class="text-sm text-on-surface-variant mt-1">October 24 • 08:30 AM</p>
+</div>
+<!-- Form Interface -->
+<section class="space-y-10">
+<!-- Exercise Field -->
+<div class="space-y-3">
+<label class="text-[10px] tracking-[0.05em] uppercase font-bold text-on-surface-variant">Exercise Name</label>
+<input class="w-full bg-transparent border-none border-b border-outline-variant focus:border-primary focus:ring-0 text-xl font-medium placeholder:text-outline-variant/40 p-0 pb-2 transition-colors text-on-surface" placeholder="e.g. Incline Dumbbell Press" type="text"/>
+</div>
+<!-- Metrics Grid -->
+<div class="grid grid-cols-12 gap-4">
+<!-- Sets -->
+<div class="col-span-4 bg-surface-container p-6 rounded-full border border-outline-variant/10 flex flex-col items-center">
+<label class="block text-[10px] tracking-[0.05em] uppercase font-bold text-on-surface-variant mb-2">Sets</label>
+<input class="w-full bg-transparent border-none p-0 text-3xl font-light tracking-tight focus:ring-0 text-center text-on-surface" type="number" value="4"/>
+</div>
+<!-- Reps -->
+<div class="col-span-4 bg-surface-container p-6 rounded-full border border-outline-variant/10 flex flex-col items-center">
+<label class="block text-[10px] tracking-[0.05em] uppercase font-bold text-on-surface-variant mb-2">Reps</label>
+<input class="w-full bg-transparent border-none p-0 text-3xl font-light tracking-tight focus:ring-0 text-center text-on-surface" type="number" value="12"/>
+</div>
+<!-- Weight -->
+<div class="col-span-4 bg-surface-container p-6 rounded-full border border-outline-variant/10 flex flex-col items-center">
+<label class="block text-[10px] tracking-[0.05em] uppercase font-bold text-on-surface-variant mb-2">Weight</label>
+<div class="flex items-baseline gap-1">
+<input class="w-12 bg-transparent border-none p-0 text-3xl font-light tracking-tight focus:ring-0 text-right text-on-surface" type="number" value="45"/>
+<span class="text-[10px] font-bold text-outline-variant uppercase">lbs</span>
+</div>
+</div>
+</div>
+<!-- Notes Field -->
+<div class="space-y-3">
+<label class="text-[10px] tracking-[0.05em] uppercase font-bold text-on-surface-variant">Add Note</label>
+<textarea class="w-full bg-surface-container border-none rounded-2xl focus:ring-1 focus:ring-primary/30 text-sm p-4 placeholder:text-outline-variant/50 text-on-surface" placeholder="Focus on slow eccentric movement..." rows="3"></textarea>
+</div>
+<!-- Contextual Metric -->
+<div class="flex items-center gap-4 py-6 border-t border-outline-variant/10">
+<div class="relative flex items-center justify-center w-3 h-3">
+<span class="absolute inline-flex h-full w-full rounded-full bg-primary opacity-20 animate-ping"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] tracking-[0.05em] uppercase font-bold text-on-surface-variant">Live Heart Rate</span>
+<span class="text-lg font-medium tracking-tight text-on-surface">134 <span class="text-[10px] text-outline-variant">BPM</span></span>
+</div>
+</div>
+</section>
+<!-- CTA Action -->
+<div class="mt-16">
+<button class="w-full h-16 rounded-full bg-primary text-on-primary font-bold tracking-[0.15em] uppercase text-sm shadow-cyan hover:bg-primary/90 transition-all flex items-center justify-center gap-3">
+<span>Finish Workout</span>
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-background/90 backdrop-blur-xl border-t border-outline-variant/15">
+<!-- DASHBOARD -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-manrope text-[9px] tracking-[0.1em] uppercase font-bold mt-1">DASHBOARD</span>
+</a>
+<!-- CATEGORIES -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">category</span>
+<span class="font-manrope text-[9px] tracking-[0.1em] uppercase font-bold mt-1">CATEGORIES</span>
+</a>
+<!-- LOGGER (ACTIVE) -->
+<a class="flex flex-col items-center justify-center text-primary transition-transform scale-105" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+<span class="font-manrope text-[9px] tracking-[0.1em] uppercase font-bold mt-1">LOGGER</span>
+</a>
+<!-- HISTORY -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-manrope text-[9px] tracking-[0.1em] uppercase font-bold mt-1">HISTORY</span>
+</a>
+</nav>
+</body></html>

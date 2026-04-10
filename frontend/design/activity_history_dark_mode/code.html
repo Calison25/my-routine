@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KINETIC | Activity History</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+        .shadow-neon { box-shadow: 0 0 20px rgba(0, 206, 209, 0.15); }
+        .cubic-bezier-transition { transition-timing-function: cubic-bezier(0.2, 0, 0, 1); }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "primary": "#00CED1",
+                "on-primary": "#002021",
+                "primary-container": "#004F51",
+                "on-primary-container": "#B2F0F1",
+                "secondary": "#B0CCCB",
+                "on-secondary": "#1B3535",
+                "secondary-container": "#324B4B",
+                "on-secondary-container": "#CCE8E7",
+                "tertiary": "#B2C9E9",
+                "on-tertiary": "#1B324B",
+                "tertiary-container": "#334963",
+                "on-tertiary-container": "#D3E4FF",
+                "error": "#FFB4AB",
+                "on-error": "#690005",
+                "error-container": "#93000A",
+                "on-error-container": "#FFDAD6",
+                "background": "#0E1415",
+                "on-background": "#E0E3E3",
+                "surface": "#0E1415",
+                "on-surface": "#E0E3E3",
+                "surface-variant": "#3F4949",
+                "on-surface-variant": "#BFC8C8",
+                "outline": "#899392",
+                "outline-variant": "#3F4949",
+                "surface-container-lowest": "#090F10",
+                "surface-container-low": "#171D1E",
+                "surface-container": "#1B2122",
+                "surface-container-high": "#252B2C",
+                "surface-container-highest": "#303637"
+              },
+              "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+              }
+            },
+          }
+        }
+    </script>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased min-h-screen pb-32">
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-background/80 backdrop-blur-xl border-b border-outline-variant/30">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden ring-1 ring-primary/30">
+<img class="w-full h-full object-cover" data-alt="close up portrait of a professional woman with a minimalist aesthetic and soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSZrTN8fIRKe2eMxE722R9b99BIqxo7ow0NtpCLzRSw2jyreE8EpYmpFvelPO4m-aWvA0zY7fVc-Lxhmbna-r2KIF5wMRaYWYqqOusJ13oir4tnItr_RLwgaMxRTsAEEIrH4X1gdFDeNT3zeQTdzHp7R7kgg_UuM3xOfv2UbXXqvdYKq4QanEhvnJTnWqYugSBEThjxFWVvrb-agmFrsEFZM3wlUWPDPRHkDLRWmwDkhcAwFdNUj-eIJVWYz6EuTRigg0h4_ITmRE"/>
+</div>
+<span class="text-lg font-bold tracking-[0.2em] uppercase text-primary">KINETIC</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">settings</button>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-2xl mx-auto">
+<section class="mb-12">
+<div class="flex flex-col gap-1 mb-8">
+<span class="text-[10px] tracking-[0.15em] uppercase font-bold text-primary/70">Journal</span>
+<h1 class="text-4xl font-light tracking-tight text-on-background">Activity History</h1>
+</div>
+<div class="flex items-center justify-between p-4 rounded-xl bg-surface-container-low border border-outline-variant/30 mb-12">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">chevron_left</button>
+<div class="flex items-center gap-2">
+<span class="text-sm font-bold tracking-widest uppercase text-on-surface">October 2023</span>
+<span class="material-symbols-outlined text-sm text-primary">expand_more</span>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">chevron_right</button>
+</div>
+</section>
+<section class="relative">
+<div class="absolute left-[15px] top-0 bottom-0 w-[1px] bg-primary/20"></div>
+<div class="space-y-16">
+<!-- Entry 1 (Completed/Active) -->
+<div class="relative pl-12">
+<div class="absolute left-0 top-1.5 w-8 h-8 rounded-full bg-surface-container-lowest border border-primary/40 flex items-center justify-center z-10 shadow-neon">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex justify-between items-baseline">
+<span class="text-[10px] tracking-[0.1em] font-bold text-on-surface-variant uppercase">Monday, 24 Oct</span>
+<span class="text-[10px] tracking-[0.1em] font-bold text-primary uppercase">Completed</span>
+</div>
+<div class="bg-surface-container-high p-6 rounded-2xl shadow-neon border border-primary/10">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="text-xl font-medium text-on-surface mb-1">Advanced Pilates</h3>
+<p class="text-sm text-on-surface-variant">Focus: Core &amp; Alignment</p>
+</div>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">self_improvement</span>
+</div>
+<div class="flex gap-8">
+<div class="flex flex-col">
+<span class="text-[10px] tracking-wider text-outline uppercase mb-1">Duration</span>
+<span class="text-lg font-semibold italic text-on-surface">45:00</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] tracking-wider text-outline uppercase mb-1">Calories</span>
+<span class="text-lg font-semibold italic text-on-surface">210 kcal</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] tracking-wider text-outline uppercase mb-1">Avg HR</span>
+<span class="text-lg font-semibold italic text-on-surface">112 bpm</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Entry 2 -->
+<div class="relative pl-12">
+<div class="absolute left-0 top-1.5 w-8 h-8 rounded-full bg-surface-container-low border border-outline-variant flex items-center justify-center z-10">
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex justify-between items-baseline">
+<span class="text-[10px] tracking-[0.1em] font-bold text-on-surface-variant uppercase">Saturday, 22 Oct</span>
+</div>
+<div class="bg-surface-container p-6 rounded-2xl border border-outline-variant/30">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="text-xl font-medium text-on-surface mb-1">Morning Trail Run</h3>
+<p class="text-sm text-on-surface-variant">Lakeside Route, 5.2km</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">directions_run</span>
+</div>
+<div class="flex gap-8">
+<div class="flex flex-col">
+<span class="text-[10px] tracking-wider text-outline uppercase mb-1">Duration</span>
+<span class="text-lg font-semibold italic text-on-surface-variant">32:15</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] tracking-wider text-outline uppercase mb-1">Pace</span>
+<span class="text-lg font-semibold italic text-on-surface-variant">6'12" /km</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Entry 3 -->
+<div class="relative pl-12">
+<div class="absolute left-0 top-1.5 w-8 h-8 rounded-full bg-surface-container-low border border-outline-variant flex items-center justify-center z-10">
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex justify-between items-baseline">
+<span class="text-[10px] tracking-[0.1em] font-bold text-on-surface-variant uppercase">Wednesday, 19 Oct</span>
+</div>
+<div class="bg-surface-container p-6 rounded-2xl border border-outline-variant/30">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="text-xl font-medium text-on-surface mb-1">Full Body Mobility</h3>
+<p class="text-sm text-on-surface-variant">Recovery session</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">accessibility_new</span>
+</div>
+<div class="flex gap-8">
+<div class="flex flex-col">
+<span class="text-[10px] tracking-wider text-outline uppercase mb-1">Duration</span>
+<span class="text-lg font-semibold italic text-on-surface-variant">20:00</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] tracking-wider text-outline uppercase mb-1">Effort</span>
+<span class="text-lg font-semibold italic text-on-surface-variant">Low</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Entry 4 (Dimmed) -->
+<div class="relative pl-12 opacity-40">
+<div class="absolute left-0 top-1.5 w-8 h-8 rounded-full bg-surface-container-low border border-outline-variant flex items-center justify-center z-10">
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex justify-between items-baseline">
+<span class="text-[10px] tracking-[0.1em] font-bold text-on-surface-variant uppercase">Monday, 17 Oct</span>
+</div>
+<div class="bg-surface-container p-6 rounded-2xl border border-outline-variant/30">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-xl font-medium text-on-surface mb-1">Evening Yoga</h3>
+<p class="text-sm text-on-surface-variant">Vinyasa Flow</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">spa</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-8 pt-4 bg-background/80 backdrop-blur-xl border-t border-outline-variant/30 shadow-neon">
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined mb-1">grid_view</span>
+<span class="text-[9px] tracking-[0.1em] uppercase font-bold">DASHBOARD</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined mb-1">category</span>
+<span class="text-[9px] tracking-[0.1em] uppercase font-bold">CATEGORIES</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95 cursor-pointer">
+<span class="material-symbols-outlined mb-1 text-3xl">add_circle</span>
+<span class="text-[9px] tracking-[0.1em] uppercase font-bold">LOGGER</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary scale-110 transition-transform cursor-pointer">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">history</span>
+<span class="text-[9px] tracking-[0.1em] uppercase font-bold">HISTORY</span>
+</div>
+</nav>
+</body></html>
