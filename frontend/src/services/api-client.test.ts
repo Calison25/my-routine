@@ -43,4 +43,18 @@ describe('apiRequest', () => {
     await expect(apiRequest('/api/workouts')).rejects.toThrow(ApiError)
     await expect(apiRequest('/api/workouts')).rejects.toThrow('Dados inválidos')
   })
+
+  it('should use port 8001 as default fallback when VITE_API_URL is not set', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve({ data: [] }),
+      }),
+    )
+
+    const { DEFAULT_API_URL } = await import('./api-client')
+
+    expect(DEFAULT_API_URL).toBe('http://localhost:8001')
+  })
 })

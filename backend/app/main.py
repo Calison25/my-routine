@@ -6,7 +6,10 @@ from fastapi.responses import JSONResponse
 
 app = FastAPI(title="My Routine API")
 
-allowed_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173").split(",")
+allowed_origins = os.getenv(
+    "ALLOWED_ORIGINS",
+    "http://localhost:5173,http://localhost:5175",
+).split(",")
 
 app.add_middleware(
     CORSMiddleware,
