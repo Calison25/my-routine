@@ -4,13 +4,21 @@ from unittest.mock import AsyncMock
 import pytest
 from httpx import ASGITransport, AsyncClient
 
+from app.application.advance_cycle import AdvanceCycleUseCase
+from app.application.get_next_workout import GetNextWorkoutUseCase, NextWorkoutOutput
 from app.application.get_workout_calendar import CalendarDay, GetWorkoutCalendarUseCase
 from app.application.register_workout import RegisterWorkoutUseCase
+from app.application.set_cycle_position import SetCyclePositionUseCase
+from app.domain.workout_cycle_state import WorkoutCycleState
 from app.domain.workout_log import WorkoutLog
+from app.domain.workout_program import WorkoutSlotCategory
 from app.main import app
 from app.presentation.routers.workouts import (
+    get_advance_cycle_use_case,
     get_get_workout_calendar_use_case,
+    get_next_workout_use_case,
     get_register_workout_use_case,
+    get_set_cycle_position_use_case,
 )
 
 
@@ -84,7 +92,7 @@ async def test_create_workout_returns_201(
     assert response.status_code == 201
     body = response.json()
     assert "data" in body
-    assert body["data"]["id"] == "test-uuid-1234"
+    assert "test-uuid-1234" in body["data"]["ids"]
 
 
 @pytest.mark.anyio
@@ -132,3 +140,146 @@ async def test_get_calendar_missing_params_returns_422() -> None:
         response = await client.get("/api/workouts/calendar")
 
     assert response.status_code == 422
+
+
+# --- today-program tests ---
+
+
+@pytest.fixture
+def mock_next_workout_use_case() -> AsyncMock:
+    use_case = AsyncMock(spec=GetNextWorkoutUseCase)
+    use_case.execute.return_value = NextWorkoutOutput(
+        slot_label="A",
+        slot_order=0,
+        slot_id="slot-1",
+        program_name="Push Pull Legs",
+        categories=[
+            WorkoutSlotCategory(id="cat-1", category_id=1, muscle_group_id=3),
+            WorkoutSlotCategory(id="cat-2", category_id=1, muscle_group_id=4),
+        ],
+    )
+    return use_case
+
+
+@pytest.fixture
+def mock_next_workout_use_case_none() -> AsyncMock:
+    use_case = AsyncMock(spec=GetNextWorkoutUseCase)
+    use_case.execute.return_value = None
+    return use_case
+
+
+@pytest.fixture
+def client_with_next_workout_mock(mock_next_workout_use_case: AsyncMock) -> None:
+    app.dependency_overrides[get_next_workout_use_case] = lambda: mock_next_workout_use_case
+    yield
+    app.dependency_overrides.clear()
+
+
+@pytest.fixture
+def client_with_next_workout_none_mock(mock_next_workout_use_case_none: AsyncMock) -> None:
+    app.dependency_overrides[get_next_workout_use_case] = lambda: mock_next_workout_use_case_none
+    yield
+    app.dependency_overrides.clear()
+
+
+@pytest.mark.anyio
+async def test_get_today_program_returns_200_with_slot(
+    mock_next_workout_use_case: AsyncMock, client_with_next_workout_mock: None
+) -> None:
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        response = await client.get("/api/workouts/today-program")
+
+    assert response.status_code == 200
+    body = response.json()
+    assert "data" in body
+    data = body["data"]
+    assert data["slot_label"] == "A"
+    assert data["slot_order"] == 0
+    assert data["program_name"] == "Push Pull Legs"
+    assert len(data["categories"]) == 2
+    assert data["categories"][0]["category_id"] == 1
+    assert data["categories"][0]["muscle_group_id"] == 3
+
+
+@pytest.mark.anyio
+async def test_get_today_program_returns_null_when_no_program(
+    mock_next_workout_use_case_none: AsyncMock, client_with_next_workout_none_mock: None
+) -> None:
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        response = await client.get("/api/workouts/today-program")
+
+    assert response.status_code == 200
+    body = response.json()
+    assert "data" in body
+    assert body["data"] is None
+
+
+# --- skip-today tests ---
+
+
+@pytest.fixture
+def mock_advance_cycle_use_case() -> AsyncMock:
+    use_case = AsyncMock(spec=AdvanceCycleUseCase)
+    use_case.execute.return_value = WorkoutCycleState(current_slot_order=1, program_id="prog-1")
+    return use_case
+
+
+@pytest.fixture
+def client_with_advance_cycle_mock(mock_advance_cycle_use_case: AsyncMock) -> None:
+    app.dependency_overrides[get_advance_cycle_use_case] = lambda: mock_advance_cycle_use_case
+    yield
+    app.dependency_overrides.clear()
+
+
+@pytest.mark.anyio
+async def test_skip_today_returns_200(
+    mock_advance_cycle_use_case: AsyncMock, client_with_advance_cycle_mock: None
+) -> None:
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        response = await client.post("/api/workouts/skip-today")
+
+    assert response.status_code == 200
+    body = response.json()
+    assert "data" in body
+    assert body["data"]["current_slot_order"] == 1
+    mock_advance_cycle_use_case.execute.assert_awaited_once()
+
+
+# --- cycle-position tests ---
+
+
+@pytest.fixture
+def mock_set_cycle_position_use_case() -> AsyncMock:
+    use_case = AsyncMock(spec=SetCyclePositionUseCase)
+    use_case.execute.return_value = WorkoutCycleState(current_slot_order=2, program_id="prog-1")
+    return use_case
+
+
+@pytest.fixture
+def client_with_set_cycle_position_mock(mock_set_cycle_position_use_case: AsyncMock) -> None:
+    app.dependency_overrides[get_set_cycle_position_use_case] = (
+        lambda: mock_set_cycle_position_use_case
+    )
+    yield
+    app.dependency_overrides.clear()
+
+
+@pytest.mark.anyio
+async def test_set_cycle_position_returns_200(
+    mock_set_cycle_position_use_case: AsyncMock, client_with_set_cycle_position_mock: None
+) -> None:
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        response = await client.put(
+            "/api/workouts/cycle-position",
+            json={"slot_order": 2},
+        )
+
+    assert response.status_code == 200
+    body = response.json()
+    assert "data" in body
+    assert body["data"]["current_slot_order"] == 2
+    mock_set_cycle_position_use_case.execute.assert_awaited_once_with(2)

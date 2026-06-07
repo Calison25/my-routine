@@ -2,11 +2,13 @@ import { useState } from "react";
 import { useCategories } from "../../hooks/useCategories";
 import { useMuscleGroups } from "../../hooks/useMuscleGroups";
 import { useTodayWorkouts } from "../../hooks/useTodayWorkouts";
+import { useTodayProgram } from "../../hooks/useTodayProgram";
 import { createWorkout } from "../../services";
 import CategorySelector from "./CategorySelector";
 import MuscleGroupSelector from "./MuscleGroupSelector";
 import WorkoutForm from "./WorkoutForm";
 import TodayDashboard from "./TodayDashboard";
+import TodayProgramWidget from "./TodayProgramWidget";
 import ErrorMessage from "../../components/ErrorMessage";
 
 const MUSCULACAO_ID = 1;
@@ -14,6 +16,7 @@ const MUSCULACAO_ID = 1;
 export default function WorkoutPage() {
   const { categories, loading: loadingCategories, error: categoriesError } = useCategories();
   const { workouts: todayWorkouts, loading: loadingToday, refresh: refreshToday } = useTodayWorkouts();
+  const { nextWorkout, loading: loadingProgram, refresh: refreshProgram } = useTodayProgram();
 
   const [categoryId, setCategoryId] = useState<number | null>(null);
   const [muscleGroupIds, setMuscleGroupIds] = useState<number[]>([]);
@@ -99,6 +102,23 @@ export default function WorkoutPage() {
         <div className="mt-4">
           <TodayDashboard workouts={todayWorkouts} loading={loadingToday} />
         </div>
+      </section>
+
+      <div className="h-px bg-outline-variant/20 mb-8" />
+
+      <section className="mb-8">
+        <span className="text-[10px] tracking-[0.15em] uppercase font-bold text-primary/70 block mb-1">
+          Programação
+        </span>
+        <h2 className="text-2xl font-extrabold tracking-tight text-on-bg mb-4">
+          Treino de Hoje
+        </h2>
+        <TodayProgramWidget
+          nextWorkout={nextWorkout}
+          loading={loadingProgram}
+          onRefresh={refreshProgram}
+          onWorkoutRegistered={refreshToday}
+        />
       </section>
 
       <div className="h-px bg-outline-variant/20 mb-8" />

@@ -1,8 +1,9 @@
 import { NavLink } from "react-router-dom";
-import { Dumbbell, Calendar } from "lucide-react";
+import { Dumbbell, Calendar, LayoutList } from "lucide-react";
 
 const tabs = [
   { to: "/treino", label: "Treino", icon: Dumbbell },
+  { to: "/programa", label: "Programa", icon: LayoutList },
   { to: "/calendario", label: "Histórico", icon: Calendar },
 ] as const;
 

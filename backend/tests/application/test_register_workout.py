@@ -3,6 +3,7 @@ from unittest.mock import AsyncMock
 
 import pytest
 
+from app.application.advance_cycle import AdvanceCycleUseCase
 from app.application.register_workout import RegisterWorkoutUseCase
 from app.domain.training_category import CategoryID
 from app.domain.workout_log import WorkoutLog
@@ -97,3 +98,66 @@ async def test_execute_with_invalid_duration_raises_error(
         await use_case.execute(workout)
 
     mock_repo.create.assert_not_awaited()
+
+
+@pytest.mark.anyio
+async def test_execute_done_advances_cycle(
+    mock_repo: AsyncMock,
+) -> None:
+    mock_advance = AsyncMock(spec=AdvanceCycleUseCase)
+
+    workout = WorkoutLog(
+        date=date(2026, 4, 9),
+        category_id=CategoryID.CARDIO,
+        muscle_group_id=None,
+        done=True,
+        duration_minutes=30,
+        program_slot_id="slot-123",
+    )
+
+    use_case = RegisterWorkoutUseCase(
+        repository=mock_repo, advance_cycle=mock_advance
+    )
+    await use_case.execute(workout)
+
+    mock_advance.execute.assert_awaited_once()
+
+
+@pytest.mark.anyio
+async def test_execute_not_done_does_not_advance_cycle(
+    mock_repo: AsyncMock,
+) -> None:
+    mock_advance = AsyncMock(spec=AdvanceCycleUseCase)
+
+    workout = WorkoutLog(
+        date=date(2026, 4, 9),
+        category_id=CategoryID.CARDIO,
+        muscle_group_id=None,
+        done=False,
+    )
+
+    use_case = RegisterWorkoutUseCase(
+        repository=mock_repo, advance_cycle=mock_advance
+    )
+    await use_case.execute(workout)
+
+    mock_advance.execute.assert_not_awaited()
+
+
+@pytest.mark.anyio
+async def test_execute_without_cycle_use_case_still_works(
+    mock_repo: AsyncMock,
+) -> None:
+    workout = WorkoutLog(
+        date=date(2026, 4, 9),
+        category_id=CategoryID.CARDIO,
+        muscle_group_id=None,
+        done=True,
+        duration_minutes=20,
+    )
+
+    use_case = RegisterWorkoutUseCase(repository=mock_repo)
+    result = await use_case.execute(workout)
+
+    assert isinstance(result, WorkoutLog)
+    mock_repo.create.assert_awaited_once()

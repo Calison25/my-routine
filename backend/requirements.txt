@@ -11,3 +11,6 @@ pytest
 pytest-asyncio
 anyio[trio]
 httpx
+openai
+anthropic
+python-multipart

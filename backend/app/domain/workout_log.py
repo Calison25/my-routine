@@ -13,6 +13,7 @@ class WorkoutLog:
     done: bool
     muscle_group_id: Optional[int] = None
     duration_minutes: Optional[int] = None
+    program_slot_id: Optional[str] = None
     id: str = field(default_factory=lambda: str(uuid.uuid4()))
 
     def validate(self) -> None:

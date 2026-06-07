@@ -4,6 +4,7 @@ export interface CreateWorkoutDTO {
   muscle_group_ids?: number[]
   done: boolean
   duration_minutes?: number
+  program_slot_id?: string
 }
 
 export interface WorkoutDetail {

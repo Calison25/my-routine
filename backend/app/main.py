@@ -14,15 +14,17 @@ allowed_origins = os.getenv(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=allowed_origins,
-    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["Content-Type"],
 )
 
 
-from app.presentation.routers import categories, muscle_groups, workouts
+from app.presentation.routers import ai, categories, muscle_groups, programs, workouts
 
+app.include_router(ai.router)
 app.include_router(categories.router)
 app.include_router(muscle_groups.router)
+app.include_router(programs.router)
 app.include_router(workouts.router)
 
 

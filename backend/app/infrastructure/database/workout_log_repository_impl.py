@@ -23,6 +23,7 @@ class SqlAlchemyWorkoutLogRepository(WorkoutLogRepository):
             muscle_group_id=log.muscle_group_id,
             done=log.done,
             duration_minutes=log.duration_minutes,
+            program_slot_id=uuid.UUID(log.program_slot_id) if log.program_slot_id else None,
         )
         self._session.add(model)
         await self._session.flush()
@@ -38,6 +39,7 @@ class SqlAlchemyWorkoutLogRepository(WorkoutLogRepository):
                 muscle_group_id=log.muscle_group_id,
                 done=log.done,
                 duration_minutes=log.duration_minutes,
+                program_slot_id=uuid.UUID(log.program_slot_id) if log.program_slot_id else None,
             )
             for log in logs
         ]
@@ -90,6 +92,7 @@ class SqlAlchemyWorkoutLogRepository(WorkoutLogRepository):
             muscle_group_id=model.muscle_group_id,
             done=model.done,
             duration_minutes=model.duration_minutes,
+            program_slot_id=str(model.program_slot_id) if model.program_slot_id else None,
         )
 
     @staticmethod

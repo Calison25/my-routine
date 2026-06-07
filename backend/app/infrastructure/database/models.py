@@ -1,6 +1,8 @@
 import uuid
 from datetime import date, datetime
 
+from typing import Optional
+
 from sqlalchemy import (
     Boolean,
     Date,
@@ -67,6 +69,11 @@ class WorkoutLogModel(Base):
     )
     done: Mapped[bool] = mapped_column(Boolean, nullable=False)
     duration_minutes: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    program_slot_id: Mapped[Optional[uuid.UUID]] = mapped_column(
+        UUID(as_uuid=True),
+        ForeignKey("workout_program_slots.id"),
+        nullable=True,
+    )
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
         nullable=False,
@@ -78,4 +85,90 @@ class WorkoutLogModel(Base):
     )
     muscle_group: Mapped["MuscleGroupModel | None"] = relationship(
         back_populates="workout_logs"
+    )
+
+
+class WorkoutProgramModel(Base):
+    __tablename__ = "workout_programs"
+
+    id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        primary_key=True,
+        default=uuid.uuid4,
+    )
+    name: Mapped[str] = mapped_column(String(200), nullable=False)
+    is_active: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        nullable=False,
+        server_default=text("now()"),
+    )
+
+    slots: Mapped[list["WorkoutProgramSlotModel"]] = relationship(
+        back_populates="program",
+        cascade="all, delete-orphan",
+        order_by="WorkoutProgramSlotModel.slot_order",
+    )
+
+
+class WorkoutProgramSlotModel(Base):
+    __tablename__ = "workout_program_slots"
+
+    id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        primary_key=True,
+        default=uuid.uuid4,
+    )
+    program_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        ForeignKey("workout_programs.id"),
+        nullable=False,
+    )
+    slot_label: Mapped[str] = mapped_column(String(10), nullable=False)
+    slot_order: Mapped[int] = mapped_column(Integer, nullable=False)
+
+    program: Mapped["WorkoutProgramModel"] = relationship(back_populates="slots")
+    categories: Mapped[list["WorkoutSlotCategoryModel"]] = relationship(
+        back_populates="slot",
+        cascade="all, delete-orphan",
+    )
+
+
+class WorkoutSlotCategoryModel(Base):
+    __tablename__ = "workout_slot_categories"
+
+    id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        primary_key=True,
+        default=uuid.uuid4,
+    )
+    slot_id: Mapped[uuid.UUID] = mapped_column(
+        UUID(as_uuid=True),
+        ForeignKey("workout_program_slots.id"),
+        nullable=False,
+    )
+    category_id: Mapped[int] = mapped_column(
+        Integer, ForeignKey("training_categories.id"), nullable=False
+    )
+    muscle_group_id: Mapped[Optional[int]] = mapped_column(
+        Integer, ForeignKey("muscle_groups.id"), nullable=True
+    )
+
+    slot: Mapped["WorkoutProgramSlotModel"] = relationship(back_populates="categories")
+
+
+class WorkoutCycleStateModel(Base):
+    __tablename__ = "workout_cycle_state"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, default=1)
+    program_id: Mapped[Optional[uuid.UUID]] = mapped_column(
+        UUID(as_uuid=True),
+        ForeignKey("workout_programs.id"),
+        nullable=True,
+    )
+    current_slot_order: Mapped[int] = mapped_column(
+        Integer, nullable=False, default=0
+    )
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), nullable=False
     )
